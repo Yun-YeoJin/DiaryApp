@@ -8,10 +8,20 @@
 import UIKit
 
 import Kingfisher
+import JGProgressHUD
 
 class SelectViewController: BaseViewController {
     
+    let hud = JGProgressHUD()
+    
     let mainView = SelectView()
+    
+    var imageList: [String] = []
+    var totalPage: Int?
+    
+    var startPage = 1
+    
+    var unsplashImage: String?
     
     override func loadView() {
         self.view = mainView
@@ -19,7 +29,7 @@ class SelectViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationController?.navigationBar.tintColor = .black
+        navigationController?.navigationBar.tintColor = .white
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "저장", style: .plain, target: self, action: #selector(saveButtonClicked))
         
         mainView.collectionView.delegate = self
@@ -32,7 +42,7 @@ class SelectViewController: BaseViewController {
     }
 
     @objc func saveButtonClicked() {
-
+        
     }
     
 
@@ -41,14 +51,17 @@ class SelectViewController: BaseViewController {
 extension SelectViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        return imageList.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SelectCollectionViewCell.reusableIdentifier, for: indexPath) as? SelectCollectionViewCell else { return UICollectionViewCell() }
         
-        cell.backgroundColor = .yellow
+        
+        
+        cell.backgroundColor = .clear
+        cell.unsplashImageView.kf.setImage(with: URL(string: imageList[indexPath.item]))
         
         return cell
     }
@@ -68,16 +81,60 @@ extension SelectViewController: UICollectionViewDelegate, UICollectionViewDataSo
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
        
+        unsplashImage = imageList[indexPath.item]
         
     }
     
 }
 
+
+
 extension SelectViewController: UISearchBarDelegate {
-    
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         
-    }
+        if let text = searchBar.text {
+            
+            hud.show(in: mainView)
+            
+            imageList.removeAll()
+            
+            unsplashAPIManager.shared.requestUnsplashImage(startPage, text) { list, totalCount in
+                self.imageList = list
+                self.totalPage = totalCount
+                
+                DispatchQueue.main.async {
+                    self.mainView.collectionView.reloadData()
+                    self.hud.dismiss(animated: true)
+                }
+            }
     
+        }
+
+        mainView.endEditing(true)
+    }
+}
+
+extension SelectViewController: UICollectionViewDataSourcePrefetching {
+    
+    func collectionView(_ collectionView: UICollectionView, prefetchItemsAt indexPaths: [IndexPath]) {
+        for indexPath in indexPaths {
+            if imageList.count - 1 == indexPath.item && startPage < (totalPage ?? 2) {
+                
+                hud.show(in: mainView)
+                
+                startPage += 1
+                
+                unsplashAPIManager.shared.requestUnsplashImage(startPage, mainView.searchBar.text ?? "") { list, total in
+                    self.imageList.append(contentsOf: list)
+                    self.totalPage = total
+                    
+                    DispatchQueue.main.async {
+                        self.mainView.collectionView.reloadData()
+                        self.hud.dismiss(animated: true)
+                    }
+                }
+            }
+        }
+    }
     
 }
