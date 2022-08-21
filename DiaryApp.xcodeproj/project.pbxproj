@@ -28,6 +28,9 @@
 		AE3E1EAA28B22A0700E9530A /* Then in Frameworks */ = {isa = PBXBuildFile; productRef = AE3E1EA928B22A0700E9530A /* Then */; };
 		AE3E1EAC28B22DD100E9530A /* ReusableProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE3E1EAB28B22DD100E9530A /* ReusableProtocol.swift */; };
 		AE3E1EAF28B2356A00E9530A /* JGProgressHUD in Frameworks */ = {isa = PBXBuildFile; productRef = AE3E1EAE28B2356A00E9530A /* JGProgressHUD */; };
+		AE3E1EB128B23EBE00E9530A /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE3E1EB028B23EBE00E9530A /* APIManager.swift */; };
+		AE3E1EB428B23ED700E9530A /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = AE3E1EB328B23ED700E9530A /* Alamofire */; };
+		AE3E1EB728B23EE600E9530A /* SwiftyJSON in Frameworks */ = {isa = PBXBuildFile; productRef = AE3E1EB628B23EE600E9530A /* SwiftyJSON */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -50,6 +53,7 @@
 		AE3E1E9E28B2148600E9530A /* SelectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectViewController.swift; sourceTree = "<group>"; };
 		AE3E1EA028B2149900E9530A /* SelectCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectCollectionViewCell.swift; sourceTree = "<group>"; };
 		AE3E1EAB28B22DD100E9530A /* ReusableProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusableProtocol.swift; sourceTree = "<group>"; };
+		AE3E1EB028B23EBE00E9530A /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,6 +61,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AE3E1EB728B23EE600E9530A /* SwiftyJSON in Frameworks */,
+				AE3E1EB428B23ED700E9530A /* Alamofire in Frameworks */,
 				AE3E1EAF28B2356A00E9530A /* JGProgressHUD in Frameworks */,
 				AE3E1EA728B2152300E9530A /* Kingfisher in Frameworks */,
 				AE3E1EAA28B22A0700E9530A /* Then in Frameworks */,
@@ -100,7 +106,6 @@
 				AE3E1E7928B20A0F00E9530A /* Assets.xcassets */,
 				AE3E1E7B28B20A0F00E9530A /* LaunchScreen.storyboard */,
 				AE3E1E7E28B20A0F00E9530A /* Info.plist */,
-				AE3E1E8628B20AE600E9530A /* APIKey.swift */,
 			);
 			path = DiaryApp;
 			sourceTree = "<group>";
@@ -143,6 +148,8 @@
 		AE3E1E8C28B20B1F00E9530A /* APIManager */ = {
 			isa = PBXGroup;
 			children = (
+				AE3E1E8628B20AE600E9530A /* APIKey.swift */,
+				AE3E1EB028B23EBE00E9530A /* APIManager.swift */,
 			);
 			path = APIManager;
 			sourceTree = "<group>";
@@ -185,6 +192,8 @@
 				AE3E1EA628B2152300E9530A /* Kingfisher */,
 				AE3E1EA928B22A0700E9530A /* Then */,
 				AE3E1EAE28B2356A00E9530A /* JGProgressHUD */,
+				AE3E1EB328B23ED700E9530A /* Alamofire */,
+				AE3E1EB628B23EE600E9530A /* SwiftyJSON */,
 			);
 			productName = DiaryApp;
 			productReference = AE3E1E6D28B20A0D00E9530A /* DiaryApp.app */;
@@ -219,6 +228,8 @@
 				AE3E1EA528B2152300E9530A /* XCRemoteSwiftPackageReference "Kingfisher" */,
 				AE3E1EA828B22A0700E9530A /* XCRemoteSwiftPackageReference "Then" */,
 				AE3E1EAD28B2356A00E9530A /* XCRemoteSwiftPackageReference "JGProgressHUD" */,
+				AE3E1EB228B23ED700E9530A /* XCRemoteSwiftPackageReference "Alamofire" */,
+				AE3E1EB528B23EE600E9530A /* XCRemoteSwiftPackageReference "SwiftyJSON" */,
 			);
 			productRefGroup = AE3E1E6E28B20A0D00E9530A /* Products */;
 			projectDirPath = "";
@@ -254,6 +265,7 @@
 				AE3E1EAC28B22DD100E9530A /* ReusableProtocol.swift in Sources */,
 				AE3E1E9428B20C2600E9530A /* BaseCollectionViewCell.swift in Sources */,
 				AE3E1E7128B20A0D00E9530A /* AppDelegate.swift in Sources */,
+				AE3E1EB128B23EBE00E9530A /* APIManager.swift in Sources */,
 				AE3E1E9028B20C0C00E9530A /* BaseView.swift in Sources */,
 				AE3E1E8728B20AE600E9530A /* APIKey.swift in Sources */,
 				AE3E1E9B28B2146700E9530A /* MainViewController.swift in Sources */,
@@ -514,6 +526,22 @@
 				minimumVersion = 2.0.0;
 			};
 		};
+		AE3E1EB228B23ED700E9530A /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
+		AE3E1EB528B23EE600E9530A /* XCRemoteSwiftPackageReference "SwiftyJSON" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SwiftyJSON/SwiftyJSON";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -536,6 +564,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = AE3E1EAD28B2356A00E9530A /* XCRemoteSwiftPackageReference "JGProgressHUD" */;
 			productName = JGProgressHUD;
+		};
+		AE3E1EB328B23ED700E9530A /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = AE3E1EB228B23ED700E9530A /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
+		AE3E1EB628B23EE600E9530A /* SwiftyJSON */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = AE3E1EB528B23EE600E9530A /* XCRemoteSwiftPackageReference "SwiftyJSON" */;
+			productName = SwiftyJSON;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
