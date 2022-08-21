@@ -40,9 +40,11 @@ class SelectViewController: BaseViewController {
         mainView.collectionView.collectionViewLayout = collectionViewLayout()
         
     }
-
+    //3. NotificationCenter.default.post를 이용한 이미지 값 보내기
     @objc func saveButtonClicked() {
         
+        NotificationCenter.default.post(name: .unsplashImage, object: nil, userInfo: ["image": unsplashImage ?? ""])
+        navigationController?.popViewController(animated: true)
     }
     
 
