@@ -18,6 +18,14 @@
 		AE3E1E9028B20C0C00E9530A /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE3E1E8F28B20C0C00E9530A /* BaseView.swift */; };
 		AE3E1E9228B20C1600E9530A /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE3E1E9128B20C1600E9530A /* BaseViewController.swift */; };
 		AE3E1E9428B20C2600E9530A /* BaseCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE3E1E9328B20C2600E9530A /* BaseCollectionViewCell.swift */; };
+		AE3E1E9928B2145A00E9530A /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE3E1E9828B2145A00E9530A /* MainView.swift */; };
+		AE3E1E9B28B2146700E9530A /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE3E1E9A28B2146700E9530A /* MainViewController.swift */; };
+		AE3E1E9D28B2147200E9530A /* SelectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE3E1E9C28B2147200E9530A /* SelectView.swift */; };
+		AE3E1E9F28B2148600E9530A /* SelectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE3E1E9E28B2148600E9530A /* SelectViewController.swift */; };
+		AE3E1EA128B2149900E9530A /* SelectCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE3E1EA028B2149900E9530A /* SelectCollectionViewCell.swift */; };
+		AE3E1EA428B214CF00E9530A /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = AE3E1EA328B214CF00E9530A /* SnapKit */; };
+		AE3E1EA728B2152300E9530A /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = AE3E1EA628B2152300E9530A /* Kingfisher */; };
+		AE3E1EAA28B22A0700E9530A /* Then in Frameworks */ = {isa = PBXBuildFile; productRef = AE3E1EA928B22A0700E9530A /* Then */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +42,11 @@
 		AE3E1E8F28B20C0C00E9530A /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
 		AE3E1E9128B20C1600E9530A /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		AE3E1E9328B20C2600E9530A /* BaseCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCollectionViewCell.swift; sourceTree = "<group>"; };
+		AE3E1E9828B2145A00E9530A /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		AE3E1E9A28B2146700E9530A /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		AE3E1E9C28B2147200E9530A /* SelectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectView.swift; sourceTree = "<group>"; };
+		AE3E1E9E28B2148600E9530A /* SelectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectViewController.swift; sourceTree = "<group>"; };
+		AE3E1EA028B2149900E9530A /* SelectCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -41,6 +54,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AE3E1EA728B2152300E9530A /* Kingfisher in Frameworks */,
+				AE3E1EAA28B22A0700E9530A /* Then in Frameworks */,
+				AE3E1EA428B214CF00E9530A /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -88,6 +104,8 @@
 		AE3E1E8828B20AF900E9530A /* MainView */ = {
 			isa = PBXGroup;
 			children = (
+				AE3E1E9828B2145A00E9530A /* MainView.swift */,
+				AE3E1E9A28B2146700E9530A /* MainViewController.swift */,
 			);
 			path = MainView;
 			sourceTree = "<group>";
@@ -95,6 +113,9 @@
 		AE3E1E8928B20B0300E9530A /* SelectView */ = {
 			isa = PBXGroup;
 			children = (
+				AE3E1E9C28B2147200E9530A /* SelectView.swift */,
+				AE3E1E9E28B2148600E9530A /* SelectViewController.swift */,
+				AE3E1EA028B2149900E9530A /* SelectCollectionViewCell.swift */,
 			);
 			path = SelectView;
 			sourceTree = "<group>";
@@ -154,6 +175,11 @@
 			dependencies = (
 			);
 			name = DiaryApp;
+			packageProductDependencies = (
+				AE3E1EA328B214CF00E9530A /* SnapKit */,
+				AE3E1EA628B2152300E9530A /* Kingfisher */,
+				AE3E1EA928B22A0700E9530A /* Then */,
+			);
 			productName = DiaryApp;
 			productReference = AE3E1E6D28B20A0D00E9530A /* DiaryApp.app */;
 			productType = "com.apple.product-type.application";
@@ -182,6 +208,11 @@
 				Base,
 			);
 			mainGroup = AE3E1E6428B20A0D00E9530A;
+			packageReferences = (
+				AE3E1EA228B214CF00E9530A /* XCRemoteSwiftPackageReference "SnapKit" */,
+				AE3E1EA528B2152300E9530A /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				AE3E1EA828B22A0700E9530A /* XCRemoteSwiftPackageReference "Then" */,
+			);
 			productRefGroup = AE3E1E6E28B20A0D00E9530A /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -210,12 +241,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AE3E1E9D28B2147200E9530A /* SelectView.swift in Sources */,
 				AE3E1E7528B20A0D00E9530A /* ViewController.swift in Sources */,
+				AE3E1E9928B2145A00E9530A /* MainView.swift in Sources */,
 				AE3E1E9428B20C2600E9530A /* BaseCollectionViewCell.swift in Sources */,
 				AE3E1E7128B20A0D00E9530A /* AppDelegate.swift in Sources */,
 				AE3E1E9028B20C0C00E9530A /* BaseView.swift in Sources */,
 				AE3E1E8728B20AE600E9530A /* APIKey.swift in Sources */,
+				AE3E1E9B28B2146700E9530A /* MainViewController.swift in Sources */,
+				AE3E1EA128B2149900E9530A /* SelectCollectionViewCell.swift in Sources */,
 				AE3E1E7328B20A0D00E9530A /* SceneDelegate.swift in Sources */,
+				AE3E1E9F28B2148600E9530A /* SelectViewController.swift in Sources */,
 				AE3E1E9228B20C1600E9530A /* BaseViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -436,6 +472,51 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		AE3E1EA228B214CF00E9530A /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
+		AE3E1EA528B2152300E9530A /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.0.0;
+			};
+		};
+		AE3E1EA828B22A0700E9530A /* XCRemoteSwiftPackageReference "Then" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/devxoul/Then";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		AE3E1EA328B214CF00E9530A /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = AE3E1EA228B214CF00E9530A /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
+		AE3E1EA628B2152300E9530A /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = AE3E1EA528B2152300E9530A /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
+		};
+		AE3E1EA928B22A0700E9530A /* Then */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = AE3E1EA828B22A0700E9530A /* XCRemoteSwiftPackageReference "Then" */;
+			productName = Then;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = AE3E1E6528B20A0D00E9530A /* Project object */;
 }
