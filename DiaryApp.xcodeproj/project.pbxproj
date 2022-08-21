@@ -31,6 +31,7 @@
 		AE3E1EB128B23EBE00E9530A /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE3E1EB028B23EBE00E9530A /* APIManager.swift */; };
 		AE3E1EB428B23ED700E9530A /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = AE3E1EB328B23ED700E9530A /* Alamofire */; };
 		AE3E1EB728B23EE600E9530A /* SwiftyJSON in Frameworks */ = {isa = PBXBuildFile; productRef = AE3E1EB628B23EE600E9530A /* SwiftyJSON */; };
+		AE3E1EBA28B281C900E9530A /* Toast in Frameworks */ = {isa = PBXBuildFile; productRef = AE3E1EB928B281C900E9530A /* Toast */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -66,6 +67,7 @@
 				AE3E1EAF28B2356A00E9530A /* JGProgressHUD in Frameworks */,
 				AE3E1EA728B2152300E9530A /* Kingfisher in Frameworks */,
 				AE3E1EAA28B22A0700E9530A /* Then in Frameworks */,
+				AE3E1EBA28B281C900E9530A /* Toast in Frameworks */,
 				AE3E1EA428B214CF00E9530A /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -194,6 +196,7 @@
 				AE3E1EAE28B2356A00E9530A /* JGProgressHUD */,
 				AE3E1EB328B23ED700E9530A /* Alamofire */,
 				AE3E1EB628B23EE600E9530A /* SwiftyJSON */,
+				AE3E1EB928B281C900E9530A /* Toast */,
 			);
 			productName = DiaryApp;
 			productReference = AE3E1E6D28B20A0D00E9530A /* DiaryApp.app */;
@@ -230,6 +233,7 @@
 				AE3E1EAD28B2356A00E9530A /* XCRemoteSwiftPackageReference "JGProgressHUD" */,
 				AE3E1EB228B23ED700E9530A /* XCRemoteSwiftPackageReference "Alamofire" */,
 				AE3E1EB528B23EE600E9530A /* XCRemoteSwiftPackageReference "SwiftyJSON" */,
+				AE3E1EB828B281C900E9530A /* XCRemoteSwiftPackageReference "Toast-Swift" */,
 			);
 			productRefGroup = AE3E1E6E28B20A0D00E9530A /* Products */;
 			projectDirPath = "";
@@ -542,6 +546,14 @@
 				minimumVersion = 5.0.0;
 			};
 		};
+		AE3E1EB828B281C900E9530A /* XCRemoteSwiftPackageReference "Toast-Swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/scalessec/Toast-Swift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -574,6 +586,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = AE3E1EB528B23EE600E9530A /* XCRemoteSwiftPackageReference "SwiftyJSON" */;
 			productName = SwiftyJSON;
+		};
+		AE3E1EB928B281C900E9530A /* Toast */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = AE3E1EB828B281C900E9530A /* XCRemoteSwiftPackageReference "Toast-Swift" */;
+			productName = Toast;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
