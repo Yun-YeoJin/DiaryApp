@@ -30,6 +30,7 @@ class SelectViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         navigationController?.navigationBar.tintColor = .white
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "저장", style: .plain, target: self, action: #selector(saveButtonClicked))
         
@@ -41,6 +42,7 @@ class SelectViewController: BaseViewController {
         mainView.collectionView.collectionViewLayout = collectionViewLayout()
         
     }
+    
     //3. NotificationCenter.default.post를 이용한 이미지 값 보내기
     @objc func saveButtonClicked() {
         

@@ -48,6 +48,10 @@ class MainView: BaseView {
         
     }
     
+    let sampleButton = UIButton().then {
+        $0.backgroundColor = .green
+    }
+    
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -58,12 +62,18 @@ class MainView: BaseView {
     }
     
     override func configureUI() {
-        [mainImageView, titleTextField, dateTextField, detailTextView, imageButton].forEach {
+        [mainImageView, titleTextField, dateTextField, detailTextView, imageButton, sampleButton].forEach {
             self.addSubview($0)
         }
     }
     
     override func setConstraints() {
+        
+        sampleButton.snp.makeConstraints { make in
+            make.trailing.top.equalTo(self.safeAreaLayoutGuide)
+            make.width.height.equalTo(50)
+        }
+        
         mainImageView.snp.makeConstraints { make in
             make.top.equalTo(self.safeAreaLayoutGuide).offset(12)
             make.leading.equalTo(self).offset(20)
