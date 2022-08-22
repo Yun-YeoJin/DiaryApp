@@ -34,17 +34,16 @@ class MainView: BaseView {
     
     let detailTextView = UITextView().then {
         $0.backgroundColor = .white
+        $0.font = .systemFont(ofSize: 15)
         $0.layer.borderColor = UIColor.black.cgColor
         $0.layer.borderWidth = 1
     }
     
     let imageButton = UIButton().then {
-        $0.setTitle("선택하러가기", for: .normal)
-        $0.setTitleColor(UIColor.black, for: .normal)
-        $0.backgroundColor = .white
-        $0.layer.cornerRadius = 5
-        $0.layer.borderWidth = 1
-        $0.layer.borderColor = UIColor.darkGray.cgColor
+        $0.setImage(UIImage(systemName: "photo"), for: .normal)
+        $0.tintColor = Constants.BaseColor.text
+        $0.backgroundColor = Constants.BaseColor.point
+        $0.layer.cornerRadius = 25
         $0.clipsToBounds = true
         
     }
@@ -66,35 +65,38 @@ class MainView: BaseView {
     
     override func setConstraints() {
         mainImageView.snp.makeConstraints { make in
-            make.top.equalTo(self.safeAreaLayoutGuide).offset(20)
-            make.centerX.equalTo(self)
-            make.width.equalTo(UIScreen.main.bounds.width - 60)
-            make.height.equalTo(UIScreen.main.bounds.height / 4.5)
+            make.top.equalTo(self.safeAreaLayoutGuide).offset(12)
+            make.leading.equalTo(self).offset(20)
+            make.trailing.equalTo(self).offset(-20)
+            make.height.equalTo(self.snp.width).multipliedBy(0.75)
         }
         
         titleTextField.snp.makeConstraints { make in
-            make.centerX.equalTo(self)
             make.top.equalTo(mainImageView.snp.bottom).offset(12)
-            make.width.equalTo(mainImageView.snp.width)
-            make.height.equalTo((UIScreen.main.bounds.height / 5.5) / 4)
+            make.leading.equalTo(self).offset(20)
+            make.trailing.equalTo(self).offset(-20)
+            make.height.equalTo(55)
         }
         
         dateTextField.snp.makeConstraints { make in
-            make.centerX.equalTo(self)
             make.top.equalTo(titleTextField.snp.bottom).offset(12)
-            make.width.equalTo(mainImageView.snp.width)
-            make.height.equalTo((UIScreen.main.bounds.height / 5.5) / 4)
+            make.leading.equalTo(self).offset(20)
+            make.trailing.equalTo(self).offset(-20)
+            make.height.equalTo(55)
         }
         
         detailTextView.snp.makeConstraints { make in
-            make.top.equalTo(dateTextField.snp.bottom).offset(20)
-            make.bottom.equalTo(self.safeAreaLayoutGuide).offset(-20)
-            make.width.equalTo(mainImageView.snp.width)
-            make.centerX.equalTo(self)
+            make.top.equalTo(dateTextField.snp.bottom).offset(12)
+            make.leading.equalTo(self).offset(20)
+            make.trailing.equalTo(self).offset(-20)
+            make.bottom.equalTo(self.safeAreaLayoutGuide).offset(-12)
         }
         
         imageButton.snp.makeConstraints { make in
-            make.bottom.trailing.equalTo(mainImageView).offset(-8)
+            make.trailing.equalTo(mainImageView.snp.trailing).offset(-12)
+            make.bottom.equalTo(mainImageView.snp.bottom).offset(-12)
+            make.width.height.equalTo(50)
         }
     }
 }
+
