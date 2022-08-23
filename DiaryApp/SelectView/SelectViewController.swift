@@ -86,6 +86,7 @@ extension SelectViewController: UICollectionViewDelegate, UICollectionViewDataSo
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
        
+        
         unsplashImage = imageList[indexPath.item]
         self.view.makeToast("\(indexPath.item)번째 사진이 선택되었습니다.", duration: 1, position: .center)
     }
