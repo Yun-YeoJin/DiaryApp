@@ -7,6 +7,7 @@
 
 import UIKit
 import SnapKit
+import Then
 
 //1. import하기
 import RealmSwift
@@ -24,7 +25,7 @@ class HomeViewController: BaseViewController {
         view.rowHeight = 60
         return view
     }() // 즉시 실행 클로저
-    
+
     var tasks: Results<UserDiary>! {
         didSet {
             // 화면 갱신은 화면 전환 코드 및 생명 주기 실행 점검 필요!
@@ -43,9 +44,8 @@ class HomeViewController: BaseViewController {
         //3. 접근하기 : Realm 데이터를 정렬해 tasks에 담기
         requestRealm()
         
-        
-        view.addSubview(tableView)
-        
+            view.addSubview(tableView)
+    
         tableView.snp.makeConstraints { make in
             make.edges.equalTo(view.safeAreaLayoutGuide)
         }
@@ -106,6 +106,13 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         cell.textLabel?.text = tasks[indexPath.row].diaryTitle
         cell.backgroundColor = .lightGray
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        let vc = MainViewController()
+        self.present(vc, animated: true)
+        
     }
     
     //참고. TableView의 Editing Mode

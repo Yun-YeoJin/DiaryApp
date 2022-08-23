@@ -38,7 +38,10 @@ class MainViewController: BaseViewController {
     }
     
     @objc func listButtonClicked() {
-    
+        
+        let vc = HomeViewController()
+        let nav = UINavigationController(rootViewController: vc)
+        self.present(nav, animated: true)
     
     }
     
