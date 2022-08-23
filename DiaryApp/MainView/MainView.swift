@@ -48,9 +48,13 @@ class MainView: BaseView {
         
     }
     
-    let sampleButton = UIButton().then {
-        $0.backgroundColor = .green
-    }
+//    let saveButton = UIButton().then {
+//        $0.setTitle("저장", for: .normal)
+//        $0.tintColor = Constants.BaseColor.text
+//        $0.backgroundColor = Constants.BaseColor.point
+//        $0.layer.cornerRadius = 20
+//        $0.clipsToBounds = true
+//    }
     
     
     override init(frame: CGRect) {
@@ -62,17 +66,17 @@ class MainView: BaseView {
     }
     
     override func configureUI() {
-        [mainImageView, titleTextField, dateTextField, detailTextView, imageButton, sampleButton].forEach {
+        [mainImageView, titleTextField, dateTextField, detailTextView, imageButton].forEach {
             self.addSubview($0)
         }
     }
     
     override func setConstraints() {
         
-        sampleButton.snp.makeConstraints { make in
-            make.trailing.top.equalTo(self.safeAreaLayoutGuide)
-            make.width.height.equalTo(50)
-        }
+//        saveButton.snp.makeConstraints { make in
+//            make.trailing.top.equalTo(self.safeAreaLayoutGuide)
+//            make.width.height.equalTo(50)
+//        }
         
         mainImageView.snp.makeConstraints { make in
             make.top.equalTo(self.safeAreaLayoutGuide).offset(12)

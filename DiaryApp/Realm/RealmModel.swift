@@ -15,7 +15,7 @@ class UserDiary: Object {
     
     @Persisted var diaryTitle: String //제목(필수)
     @Persisted var contents: String?//내용(옵션)
-    @Persisted var diaryDate = Date()//작성 날짜(필수)
+    @Persisted var diaryDate: String //작성 날짜(필수)
     @Persisted var registDate = Date() //등록 날짜(필수)
     @Persisted var favorite: Bool //즐겨찾기(필수)
     @Persisted var photo: String?//사진String(옵션)
@@ -23,7 +23,7 @@ class UserDiary: Object {
     //PK(primary key) : Int, UUID(16byte), ObjectID(12byte)
     @Persisted(primaryKey: true) var objectID: ObjectId
     
-    convenience init(diaryTitle: String, contents: String, diaryDate: Date, registDate: Date, photo: String?) {
+    convenience init(diaryTitle: String, contents: String, diaryDate: String, registDate: Date, photo: String?) {
         self.init()
         self.diaryTitle = diaryTitle
         self.contents = contents

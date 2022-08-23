@@ -62,9 +62,7 @@ extension SelectViewController: UICollectionViewDelegate, UICollectionViewDataSo
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SelectCollectionViewCell.reusableIdentifier, for: indexPath) as? SelectCollectionViewCell else { return UICollectionViewCell() }
-        
-        
-        
+
         cell.backgroundColor = .clear
         cell.unsplashImageView.kf.setImage(with: URL(string: imageList[indexPath.item]))
         
@@ -92,8 +90,6 @@ extension SelectViewController: UICollectionViewDelegate, UICollectionViewDataSo
     }
     
 }
-
-
 
 extension SelectViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {

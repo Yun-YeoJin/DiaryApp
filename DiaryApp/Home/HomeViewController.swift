@@ -38,6 +38,8 @@ class HomeViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        view.backgroundColor = .black
+        
         //3. 접근하기 : Realm 데이터를 정렬해 tasks에 담기
         requestRealm()
         
@@ -48,13 +50,14 @@ class HomeViewController: BaseViewController {
             make.edges.equalTo(view.safeAreaLayoutGuide)
         }
         
+        navigationController?.navigationBar.tintColor = .white
+        
         let alignButton = UIBarButtonItem(image: UIImage(systemName: "text.alignleft"), style: .plain, target: self, action: #selector(alignButtonClicked))
         let filterButton = UIBarButtonItem(image: UIImage(systemName: "camera.filters"), style: .plain, target: self, action: #selector(filterButtonClicked))
         
         navigationItem.leftBarButtonItems = [alignButton, filterButton]
-        
-        
-        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "star.fill"), style: .plain, target: self, action: #selector(starButtonClicked))
+
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "arrowshape.turn.up.backward.2.circle.fill"), style: .plain, target: self, action: #selector(starButtonClicked))
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -70,9 +73,9 @@ class HomeViewController: BaseViewController {
     }
     
     @objc func starButtonClicked() {
-        let vc = MainViewController()
-        vc.modalPresentationStyle = .fullScreen
-        present(vc, animated: true)
+ 
+        self.dismiss(animated: true)
+        
     }
     
     @objc func alignButtonClicked() {
@@ -106,12 +109,13 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     //참고. TableView의 Editing Mode
-    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+    func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         
         let favorite = UIContextualAction(style: .normal, title: "즐겨찾기") { action, view, completionHandler in
             
             //realm data update
             try! self.localRealm.write{
+                
                 //MARK: 하나의 레코드에서 특정 컬럼 하나만 변경
                 self.tasks[indexPath.row].favorite = !self.tasks[indexPath.row].favorite
                 
@@ -138,18 +142,20 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         return UISwipeActionsConfiguration(actions: [favorite])
     }
     
-//    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-//
-//        let favorite = UIContextualAction(style: .normal, title: "즐겨찾기") { action, view, completionHandler in
-//
-//            print("favorite Button Clicked")
-//        }
-//
-//        let example = UIContextualAction(style: .normal, title: "예시") { action, view, completionHandler in
-//
-//            print("example Button Clicked")
-//        }
-//
-//        return UISwipeActionsConfiguration(actions: [favorite, example])
-//    }
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        
+        if editingStyle == .delete {
+            
+            try! localRealm.write {
+                localRealm.delete(tasks[indexPath.row])
+            }
+        }
+        
+        tableView.reloadData()
+        
+    }
 }
