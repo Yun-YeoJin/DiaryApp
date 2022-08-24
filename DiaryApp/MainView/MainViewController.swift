@@ -32,31 +32,31 @@ class MainViewController: BaseViewController {
         print("Realm is located at:", localRealm.configuration.fileURL!)
         
         navigationController?.navigationBar.tintColor = .white
+        
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "저장", style: .plain, target: self, action: #selector(saveButtonClicked))
-        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "목록", style: .plain, target: self, action: #selector(listButtonClicked))
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "취소", style: .plain, target: self, action: #selector(cancelButtonClicked))
         
     }
     
-    @objc func listButtonClicked() {
+    @objc func cancelButtonClicked() {
         
-        let vc = HomeViewController()
-        let nav = UINavigationController(rootViewController: vc)
-        self.present(nav, animated: true)
+        dismiss(animated: true)
     
     }
     
     @objc func saveButtonClicked() {
-        let task = UserDiary(diaryTitle: "\(mainView.titleTextField.text ?? "")", contents: "\(mainView.detailTextView.text ?? "")", diaryDate: "\(mainView.dateTextField.text ?? "")", registDate: Date(), photo: nil) // => Record를 추가하는 과정
         
+        
+        
+        let task = UserDiary(diaryTitle: "\(mainView.titleTextField.text ?? "")", contents: "\(mainView.detailTextView.text ?? "")", diaryDate: "\(mainView.dateTextField.text ?? "")", registDate: Date(), photo: nil) // => Record를 추가하는 과정
+
         try! localRealm.write {
             localRealm.add(task) // => Create 하는 과정
             print("Realm Succeed")
             self.dismiss(animated: true)
         }
-        
-        let vc = HomeViewController()
-        let nav = UINavigationController(rootViewController: vc)
-        self.present(nav, animated: true)
+
+        dismiss(animated: true)
         
     }
      
@@ -82,8 +82,7 @@ class MainViewController: BaseViewController {
     @objc func imageButtonClicked() {
         
         let vc = SelectViewController()
-        
-        navigationController?.pushViewController(vc, animated: true)
+        transition(vc, transitionStyle: .presentNavigation)
         
     }
 

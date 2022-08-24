@@ -30,7 +30,6 @@ class HomeViewController: BaseViewController {
         didSet {
             // 화면 갱신은 화면 전환 코드 및 생명 주기 실행 점검 필요!
             tableView.reloadData()
-            print("Tasks Changed")
         }
     }
     
@@ -57,7 +56,7 @@ class HomeViewController: BaseViewController {
         
         navigationItem.leftBarButtonItems = [alignButton, filterButton]
 
-        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "arrowshape.turn.up.backward.2.circle.fill"), style: .plain, target: self, action: #selector(starButtonClicked))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "plus"), style: .plain, target: self, action: #selector(plusButtonClicked))
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -72,9 +71,11 @@ class HomeViewController: BaseViewController {
         tasks = localRealm.objects(UserDiary.self).sorted(byKeyPath: "diaryTitle", ascending: false)
     }
     
-    @objc func starButtonClicked() {
+    @objc func plusButtonClicked() {
  
-        self.dismiss(animated: true)
+        let vc = MainViewController()
+        transition(vc, transitionStyle: .presentFullNavigation)
+        
         
     }
     

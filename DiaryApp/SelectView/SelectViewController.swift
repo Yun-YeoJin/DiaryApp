@@ -31,8 +31,11 @@ class SelectViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        view.backgroundColor = Constants.BaseColor.background
+        
         navigationController?.navigationBar.tintColor = .white
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "저장", style: .plain, target: self, action: #selector(saveButtonClicked))
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "취소", style: .plain, target: self, action: #selector(closeButtonClicked))
         
         mainView.collectionView.delegate = self
         mainView.collectionView.dataSource = self
@@ -47,7 +50,12 @@ class SelectViewController: BaseViewController {
     @objc func saveButtonClicked() {
         
         NotificationCenter.default.post(name: .unsplashImage, object: nil, userInfo: ["image": unsplashImage ?? ""])
-        navigationController?.popViewController(animated: true)
+        dismiss(animated: true)
+    }
+    @objc func closeButtonClicked() {
+        
+        dismiss(animated: true)
+        
     }
     
 

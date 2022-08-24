@@ -37,6 +37,7 @@
 		AE3E1EC728B3163A00E9530A /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = AE3E1EC628B3163A00E9530A /* Realm */; };
 		AE3E1EC928B3163A00E9530A /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = AE3E1EC828B3163A00E9530A /* RealmSwift */; };
 		AE3E1ECC28B319E700E9530A /* RealmModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE3E1ECB28B319E700E9530A /* RealmModel.swift */; };
+		AEB23B1628B5A5A900692200 /* Transition+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEB23B1528B5A5A900692200 /* Transition+Extension.swift */; };
 		AEDC921628B32AA3000D7F7B /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEDC921528B32AA3000D7F7B /* HomeViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -64,6 +65,7 @@
 		AE3E1EC128B3060300E9530A /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		AE3E1EC328B3060B00E9530A /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		AE3E1ECB28B319E700E9530A /* RealmModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmModel.swift; sourceTree = "<group>"; };
+		AEB23B1528B5A5A900692200 /* Transition+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Transition+Extension.swift"; sourceTree = "<group>"; };
 		AEDC921528B32AA3000D7F7B /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -107,6 +109,7 @@
 		AE3E1E6F28B20A0D00E9530A /* DiaryApp */ = {
 			isa = PBXGroup;
 			children = (
+				AEB23B1428B5A59500692200 /* Extension */,
 				AEDC921428B32A90000D7F7B /* Home */,
 				AE3E1ECA28B319D300E9530A /* Realm */,
 				AE3E1E8C28B20B1F00E9530A /* APIManager */,
@@ -203,6 +206,14 @@
 				AE3E1ECB28B319E700E9530A /* RealmModel.swift */,
 			);
 			path = Realm;
+			sourceTree = "<group>";
+		};
+		AEB23B1428B5A59500692200 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				AEB23B1528B5A5A900692200 /* Transition+Extension.swift */,
+			);
+			path = Extension;
 			sourceTree = "<group>";
 		};
 		AEDC921428B32A90000D7F7B /* Home */ = {
@@ -312,6 +323,7 @@
 				AE3E1EAC28B22DD100E9530A /* ReusableProtocol.swift in Sources */,
 				AE3E1E9428B20C2600E9530A /* BaseCollectionViewCell.swift in Sources */,
 				AEDC921628B32AA3000D7F7B /* HomeViewController.swift in Sources */,
+				AEB23B1628B5A5A900692200 /* Transition+Extension.swift in Sources */,
 				AE3E1EC428B3060B00E9530A /* Color.swift in Sources */,
 				AE3E1EC228B3060300E9530A /* Constants.swift in Sources */,
 				AE3E1E7128B20A0D00E9530A /* AppDelegate.swift in Sources */,
