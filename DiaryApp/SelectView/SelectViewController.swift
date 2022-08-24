@@ -24,6 +24,11 @@ class SelectViewController: BaseViewController {
     
     var unsplashImage: String?
     
+    var selectImage: UIImage?
+    var selectIndexPath: IndexPath?
+    
+    var delegate: SelectImageDelegate?
+    
     override func loadView() {
         self.view = mainView
     }
@@ -34,22 +39,35 @@ class SelectViewController: BaseViewController {
         view.backgroundColor = Constants.BaseColor.background
         
         navigationController?.navigationBar.tintColor = .white
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "저장", style: .plain, target: self, action: #selector(saveButtonClicked))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "선택", style: .plain, target: self, action: #selector(saveButtonClicked))
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "취소", style: .plain, target: self, action: #selector(closeButtonClicked))
         
         mainView.collectionView.delegate = self
         mainView.collectionView.dataSource = self
         mainView.searchBar.delegate = self
-
+        
         mainView.collectionView.register(SelectCollectionViewCell.self, forCellWithReuseIdentifier: SelectCollectionViewCell.reusableIdentifier)
         mainView.collectionView.collectionViewLayout = collectionViewLayout()
         
+  
+         
+        //서버 통신하기 전에 interaction 막기 - 통신 중에
+        //view.isUserInteractionEnabled = false
+        //mainView.collectionView.isUserInteractionEnabled = false
     }
     
     //3. NotificationCenter.default.post를 이용한 이미지 값 보내기
     @objc func saveButtonClicked() {
         
-        NotificationCenter.default.post(name: .unsplashImage, object: nil, userInfo: ["image": unsplashImage ?? ""])
+        //NotificationCenter.default.post(name: .unsplashImage, object: nil, userInfo: ["image": unsplashImage ?? ""])
+        
+        guard let selectImage = selectImage else {
+            showAlertMessage(title: "사진을 선택해주세요", buttonTitle: "OK")
+            return
+        }
+        
+        delegate?.sendImageData(image: selectImage)
+        
         dismiss(animated: true)
     }
     @objc func closeButtonClicked() {
@@ -58,7 +76,7 @@ class SelectViewController: BaseViewController {
         
     }
     
-
+    
 }
 
 extension SelectViewController: UICollectionViewDelegate, UICollectionViewDataSource {
@@ -70,9 +88,12 @@ extension SelectViewController: UICollectionViewDelegate, UICollectionViewDataSo
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SelectCollectionViewCell.reusableIdentifier, for: indexPath) as? SelectCollectionViewCell else { return UICollectionViewCell() }
-
+        
         cell.backgroundColor = .clear
         cell.unsplashImageView.kf.setImage(with: URL(string: imageList[indexPath.item]))
+        
+        cell.layer.borderWidth = selectIndexPath == indexPath ? 4 : 0
+        cell.layer.borderColor = selectIndexPath == indexPath ? UIColor.yellow.cgColor : nil
         
         return cell
     }
@@ -90,12 +111,26 @@ extension SelectViewController: UICollectionViewDelegate, UICollectionViewDataSo
         return layout
     }
     
+    // isUserInteractionEnabled & JGprogressHHUD Loading 이용
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-       
         
-        unsplashImage = imageList[indexPath.item]
+        guard let cell = collectionView.cellForItem(at: indexPath) as? SelectCollectionViewCell else { return }
+        selectImage = cell.unsplashImageView.image
+        
+        selectIndexPath = indexPath
+        collectionView.reloadData()
+        
+        //unsplashImage = imageList[indexPath.item]
         self.view.makeToast("\(indexPath.item)번째 사진이 선택되었습니다.", duration: 1, position: .center)
     }
+    
+//    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
+//        print(#function)
+//        selectIndexPath = nil
+//        selectImage = nil
+//        collectionView.reloadData()
+//
+//    }
     
 }
 
@@ -117,9 +152,9 @@ extension SelectViewController: UISearchBarDelegate {
                     self.hud.dismiss(animated: true)
                 }
             }
-    
+            
         }
-
+        
         mainView.endEditing(true)
     }
 }

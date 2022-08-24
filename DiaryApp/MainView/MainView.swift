@@ -34,6 +34,7 @@ class MainView: BaseView {
     
     let detailTextView = UITextView().then {
         $0.backgroundColor = .white
+        $0.textColor = .black
         $0.font = .systemFont(ofSize: 15)
         $0.layer.borderColor = UIColor.black.cgColor
         $0.layer.borderWidth = 1
@@ -47,14 +48,6 @@ class MainView: BaseView {
         $0.clipsToBounds = true
         
     }
-    
-//    let saveButton = UIButton().then {
-//        $0.setTitle("저장", for: .normal)
-//        $0.tintColor = Constants.BaseColor.text
-//        $0.backgroundColor = Constants.BaseColor.point
-//        $0.layer.cornerRadius = 20
-//        $0.clipsToBounds = true
-//    }
     
     
     override init(frame: CGRect) {

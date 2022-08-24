@@ -20,7 +20,7 @@ class HomeViewController: BaseViewController {
         let view = UITableView()
         view.delegate = self
         view.dataSource = self
-        view.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        view.register(HomeTableViewCell.self, forCellReuseIdentifier: HomeTableViewCell.reusableIdentifier)
         view.backgroundColor = .lightGray
         view.rowHeight = 60
         return view
@@ -93,7 +93,7 @@ class HomeViewController: BaseViewController {
             // .filter("diaryTitle = '오늘의 일기761'") <=> String 비교할 때는 작은 따옴표 안에 들어가야함.
         
     }
-    
+
 }
 
 extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
@@ -102,10 +102,17 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         return tasks.count
     }
     
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 150
+    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell")!
-        cell.textLabel?.text = tasks[indexPath.row].diaryTitle
+        let cell = tableView.dequeueReusableCell(withIdentifier: "HomeTableViewCell") as! HomeTableViewCell
+        cell.titleLabel.text = tasks[indexPath.row].diaryTitle
+        cell.contentsLabel.text = tasks[indexPath.row].contents
+        cell.registDateLabel.text = tasks[indexPath.row].diaryDate
         cell.backgroundColor = .lightGray
+        cell.diaryImageView.image = loadImageFromDocument("\(tasks[indexPath.row].objectID).jpg")
         return cell
     }
     
