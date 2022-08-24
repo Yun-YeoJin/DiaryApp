@@ -46,7 +46,24 @@ class MainView: BaseView {
         $0.backgroundColor = Constants.BaseColor.point
         $0.layer.cornerRadius = 25
         $0.clipsToBounds = true
-        
+    }
+    
+    let backupButton = UIButton().then {
+        $0.setTitle("백업하기", for: .normal)
+        $0.backgroundColor = .white
+        $0.setTitleColor(UIColor.black, for: .normal)
+        $0.layer.cornerRadius = 8
+        $0.layer.borderColor = UIColor.black.cgColor
+        $0.layer.borderWidth = 2
+    }
+    
+    let restoreButton = UIButton().then {
+        $0.setTitle("복구하기", for: .normal)
+        $0.backgroundColor = .white
+        $0.setTitleColor(UIColor.black, for: .normal)
+        $0.layer.cornerRadius = 8
+        $0.layer.borderColor = UIColor.black.cgColor
+        $0.layer.borderWidth = 2
     }
     
     
@@ -59,7 +76,7 @@ class MainView: BaseView {
     }
     
     override func configureUI() {
-        [mainImageView, titleTextField, dateTextField, detailTextView, imageButton].forEach {
+        [mainImageView, titleTextField, dateTextField, imageButton, backupButton, restoreButton, detailTextView].forEach {
             self.addSubview($0)
         }
     }
@@ -96,13 +113,27 @@ class MainView: BaseView {
             make.top.equalTo(dateTextField.snp.bottom).offset(12)
             make.leading.equalTo(self).offset(20)
             make.trailing.equalTo(self).offset(-20)
-            make.bottom.equalTo(self.safeAreaLayoutGuide).offset(-12)
+            make.bottom.equalTo(-100)
         }
         
         imageButton.snp.makeConstraints { make in
             make.trailing.equalTo(mainImageView.snp.trailing).offset(-12)
             make.bottom.equalTo(mainImageView.snp.bottom).offset(-12)
             make.width.height.equalTo(50)
+        }
+        
+        backupButton.snp.makeConstraints { make in
+            make.leading.equalTo(10)
+            make.bottom.equalTo(safeAreaLayoutGuide).offset(-10)
+            make.height.equalTo(44)
+            make.width.equalTo(80)
+        }
+        
+        restoreButton.snp.makeConstraints { make in
+            make.trailing.equalTo(-10)
+            make.bottom.equalTo(safeAreaLayoutGuide).offset(-10)
+            make.height.equalTo(44)
+            make.width.equalTo(80)
         }
     }
 }

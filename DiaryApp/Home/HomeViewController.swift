@@ -24,7 +24,9 @@ class HomeViewController: BaseViewController {
         view.backgroundColor = .lightGray
         view.rowHeight = 60
         return view
-    }() // 즉시 실행 클로저
+    }()
+    
+  
 
     var tasks: Results<UserDiary>! {
         didSet {
@@ -43,12 +45,13 @@ class HomeViewController: BaseViewController {
         //3. 접근하기 : Realm 데이터를 정렬해 tasks에 담기
         requestRealm()
         
-            view.addSubview(tableView)
+        view.addSubview(tableView)
     
         tableView.snp.makeConstraints { make in
             make.edges.equalTo(view.safeAreaLayoutGuide)
         }
         
+      
         navigationController?.navigationBar.tintColor = .white
         
         let alignButton = UIBarButtonItem(image: UIImage(systemName: "text.alignleft"), style: .plain, target: self, action: #selector(alignButtonClicked))
