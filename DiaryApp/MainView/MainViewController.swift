@@ -89,8 +89,8 @@ class MainViewController: BaseViewController {
     
         navigationItem.title = "윤기사의 일기장"
         mainView.imageButton.addTarget(self, action: #selector(imageButtonClicked), for: .touchUpInside)
-       
-
+        mainView.restoreButton.addTarget(self, action: #selector(restoreButtonClicked), for: .touchUpInside)
+        mainView.backupButton.addTarget(self, action: #selector(backupButtonClicked), for: .touchUpInside)
     }
 
     
@@ -100,6 +100,14 @@ class MainViewController: BaseViewController {
         let vc = SelectViewController()
         vc.delegate = self
         transition(vc, transitionStyle: .presentNavigation)
+        
+    }
+    
+    @objc func restoreButtonClicked() {
+        
+    }
+    
+    @objc func backupButtonClicked() {
         
     }
 
