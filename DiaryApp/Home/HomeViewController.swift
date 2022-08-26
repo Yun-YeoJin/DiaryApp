@@ -14,6 +14,8 @@ import RealmSwift
 
 class HomeViewController: BaseViewController {
     
+    let repository = UserDiaryRepository()
+    
     let localRealm = try! Realm() //2.불러주기
     //지연 저장
     lazy var tableView: UITableView = {
@@ -73,7 +75,8 @@ class HomeViewController: BaseViewController {
     }
     
     func requestRealm() {
-        tasks = localRealm.objects(UserDiary.self).sorted(byKeyPath: "diaryTitle", ascending: false)
+        //Realm 데이터를 정렬해 tasks에 담기
+        tasks = repository.fetch()
     }
     
     @objc func plusButtonClicked() {
@@ -86,15 +89,15 @@ class HomeViewController: BaseViewController {
     
     @objc func alignButtonClicked() {
         
-        tasks = localRealm.objects(UserDiary.self).sorted(byKeyPath: "registDate", ascending: true)
-        //tableView.reloadData()
+        tasks = repository.fetchSort("registDate")
+    
         
     }
     
     //Realm filter query, NSPredicate
     @objc func filterButtonClicked() {
         
-        tasks = localRealm.objects(UserDiary.self).filter("diaryTitle CONTAINS[c] '6'")
+        tasks = repository.fetchFilter()
             // .filter("diaryTitle = '오늘의 일기761'") <=> String 비교할 때는 작은 따옴표 안에 들어가야함.
         
     }
@@ -133,26 +136,10 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         
         let favorite = UIContextualAction(style: .normal, title: "즐겨찾기") { action, view, completionHandler in
             
-            //realm data update
-            try! self.localRealm.write{
-                
-                //MARK: 하나의 레코드에서 특정 컬럼 하나만 변경
-                self.tasks[indexPath.row].favorite = !self.tasks[indexPath.row].favorite
-                
-                //MARK: 하나의 테이블에 특정 컬럼 전체 값을 변경
-                //self.tasks.setValue(true, forKey: "favorite")
-                
-                //MARK: 하나의 레코드에서 여러 컬럼들이 변경
-                //self.localRealm.create(UserDiary.self, value: ["objectID": self.tasks[indexPath.row].objectID, "diaryContents": "변경 테스트", "diaryTitle": "제목 테스트"], update: .modified)
-                
-                print("Realm Update Success")
-            }
-            
-            //1. 스와이프한 셀 하나만 ReloadRows 코드를 구현 => 상대적 효율성
-            //2. 데이터가 변경되었으니 다시 realmd에서 데이터를 가지고 오기 => didSet 일관적 형태로 갱신
+           
+            self.repository.updateFavorite(self.tasks[indexPath.row])
             self.requestRealm()
-            
-            
+ 
         }
         
         let image = tasks[indexPath.row].favorite ? "star.fill" : "star"
@@ -166,14 +153,8 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         
         let delete = UIContextualAction(style: .normal, title: "삭제") { action, view, completionHandler in
             
-            let task = self.tasks[indexPath.row]
-            
-            self.removeImageFromDocument("\(task.objectID).jpg")
-            //Realm에 있는 정보가 먼저 지워지면 removeImageFromDocument가 실행이 안되기 때문에 순서가 중요하다.
-            
-            try! self.localRealm.write {
-                self.localRealm.delete(task)
-            }
+            self.repository.delete(self.tasks[indexPath.row])
+        
             self.requestRealm()
         }
         
