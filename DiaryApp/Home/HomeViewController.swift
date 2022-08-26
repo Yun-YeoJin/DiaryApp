@@ -162,20 +162,38 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         return UISwipeActionsConfiguration(actions: [favorite])
     }
     
-    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        return true
-    }
-    
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         
-        if editingStyle == .delete {
+        let delete = UIContextualAction(style: .normal, title: "삭제") { action, view, completionHandler in
             
-            try! localRealm.write {
-                localRealm.delete(tasks[indexPath.row])
+            let task = self.tasks[indexPath.row]
+            
+            self.removeImageFromDocument("\(task.objectID).jpg")
+            //Realm에 있는 정보가 먼저 지워지면 removeImageFromDocument가 실행이 안되기 때문에 순서가 중요하다.
+            
+            try! self.localRealm.write {
+                self.localRealm.delete(task)
             }
+            self.requestRealm()
         }
         
-        tableView.reloadData()
-        
+        return UISwipeActionsConfiguration(actions: [delete])
     }
+    
+//    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+//        return true
+//    }
+//
+//    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+//
+//        if editingStyle == .delete {
+//
+//            try! localRealm.write {
+//                localRealm.delete(tasks[indexPath.row])
+//            }
+//        }
+//
+//        tableView.reloadData()
+//
+//    }
 }
